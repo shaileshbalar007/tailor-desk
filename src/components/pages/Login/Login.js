@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // images
 
@@ -18,8 +18,11 @@ import Login_img from "../../../assets/login/Loginillustration.png";
 // icons
 import FaceTwoToneIcon from "@mui/icons-material/FaceTwoTone";
 import VisibilityTwoToneIcon from "@mui/icons-material/VisibilityTwoTone";
+import { Routing } from "../../shared/routing";
 
 const Login = () => {
+  const Navigate = useNavigate();
+
   return (
     <>
       <Box sx={{ width: "100%", height: "100vh", overflowX: "hidden" }}>
@@ -135,6 +138,7 @@ const Login = () => {
                   background: "#3f51b5",
                   textTransform: "none",
                 }}
+                onClick={() => Navigate(Routing.ItemMaster)}
               >
                 Login
               </Button>
