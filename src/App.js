@@ -4,7 +4,7 @@ import Spinner from "./components/Layout/spinner";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PrivateRoute from "./utils/PrivateRoute";
+// import PrivateRoute from "./utils/PrivateRoute";
 import { Routing } from "./components/shared/routing";
 import MainLayout from "./components/Layout/MainLayout";
 
@@ -64,11 +64,11 @@ const App = () => {
                   path={route.path}
                   element={
                     route.isPrivateRoute ? (
-                      <PrivateRoute>
+                      // <PrivateRoute>
                         <MainLayout>
                           <route.component />
                         </MainLayout>
-                      </PrivateRoute>
+                      // </PrivateRoute>
                     ) : (
                       <route.component />
                     )
