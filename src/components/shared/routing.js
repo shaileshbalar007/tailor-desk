@@ -3,6 +3,7 @@ export const Routing = {
   Login: "/login",
   Signup: "/signup",
   Account: "/account",
+  Forgot_Password: "/forgot_password",
 
   // admin
   ItemMaster: "/master/item_Master",

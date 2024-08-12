@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 // images
 
-import Login_img from "../../../assets/login/Loginillustration.png";
+import Login_img from "../../../../assets/login/Loginillustration.png";
 
 // icons
 import FaceTwoToneIcon from "@mui/icons-material/FaceTwoTone";
@@ -21,7 +21,7 @@ import VisibilityTwoToneIcon from "@mui/icons-material/VisibilityTwoTone";
 import AddIcCallTwoToneIcon from "@mui/icons-material/AddIcCallTwoTone";
 import ApartmentTwoToneIcon from "@mui/icons-material/ApartmentTwoTone";
 import { EmailTwoTone } from "@mui/icons-material";
-import { Routing } from "../../shared/routing";
+import { Routing } from "../../../shared/routing";
 
 const SignUp = () => {
   const Navigate = useNavigate();

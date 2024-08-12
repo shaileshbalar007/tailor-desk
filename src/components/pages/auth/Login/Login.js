@@ -13,12 +13,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 // images
 
-import Login_img from "../../../assets/login/Loginillustration.png";
+import Login_img from "../../../../assets/login/Loginillustration.png";
 
 // icons
 import FaceTwoToneIcon from "@mui/icons-material/FaceTwoTone";
 import VisibilityTwoToneIcon from "@mui/icons-material/VisibilityTwoTone";
-import { Routing } from "../../shared/routing";
+import { Routing } from "../../../shared/routing";
 
 const Login = () => {
   const Navigate = useNavigate();
@@ -125,7 +125,7 @@ const Login = () => {
                     control={<Checkbox />}
                     label="Remember me"
                   />
-                  <Link>Forgot Password?</Link>
+                  <Link to={Routing.Forgot_Password}>Forgot Password?</Link>
                 </Box>
               </Box>
               <Button
@@ -139,6 +139,7 @@ const Login = () => {
                   textTransform: "none",
                 }}
                 onClick={() => Navigate(Routing.ItemMaster)}
+                // onClick={Heanle}
               >
                 Login
               </Button>

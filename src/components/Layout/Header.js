@@ -70,7 +70,7 @@ const Header = ({ handleDrawerToggle }) => {
           component="div"
           sx={{ color: "#000", marginLeft: "auto", fontSize: "18px" }}
         >
-          hello ! good {getTimeOfDay()} {userDetail.username}
+          hello ! good {getTimeOfDay()} {userDetail?.username}
         </Typography>
         <Box sx={{ display: "flex", gap: "12px", alignItems: "center" }}>
           <IconButton>
@@ -87,7 +87,7 @@ const Header = ({ handleDrawerToggle }) => {
             <Typography
               sx={{ fontSize: "14px", color: "#000", fontWeight: "600" }}
             >
-              {userDetail.username}
+              {userDetail?.username}
             </Typography>
             <Avatar
               alt="User-img"

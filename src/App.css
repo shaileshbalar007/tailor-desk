@@ -86,3 +86,15 @@
 #Popup_item {
   width: 477px !important;
 }
+
+.css-tccdxk {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+@media (max-width:500px) {
+  .css-tccdxk {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

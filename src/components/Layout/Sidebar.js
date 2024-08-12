@@ -27,27 +27,24 @@ const SidbarNavigation = [
     Navigate: "Master",
     icon: <PendingActionsTwoToneIcon />,
     Path: "/master",
-    Role: "admin",
     sub: [
       {
         Navigate: "Item Master",
         icon: <GroupTwoToneIcon />,
         Path: "/master/item_Master",
-        Role: "admin",
       },
       {
         Navigate: "Pattern Master ",
         icon: <GroupTwoToneIcon />,
         Path: "/master/pattern_master",
-        Role: "admin",
       },
     ],
   },
 ];
-const Sidebar = ({ isClosing, handleDrawerTransitionEnd }) => {
+const Sidebar = ({ isClosing }) => {
   const location = window.location.pathname;
 
-  const [expandedItem, setExpandedItem] = useState(null);
+  const [expandedItem, setExpandedItem] = useState(0);
 
   const navigate = useNavigate();
 

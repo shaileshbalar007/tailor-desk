@@ -8,14 +8,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Routing } from "./components/shared/routing";
 import MainLayout from "./components/Layout/MainLayout";
 
-const Login = lazy(() => import("./components/pages/Login/Login"));
-const SignUp = lazy(() => import("./components/pages/signUp/SignUp"));
+const Login = lazy(() => import("./components/pages/auth/Login/Login"));
+const SignUp = lazy(() => import("./components/pages/auth/signUp/SignUp"));
 const Account = lazy(() => import("./components/pages/Account/Account"));
 const PatternMaster = lazy(() =>
   import("./components/pages/admin/PatternMaster/PatternMaster")
 );
 const ItemMaster = lazy(() =>
   import("./components/pages/admin/ItemMaster/Item_Mast")
+);
+const Forgot_Password = lazy(() =>
+  import("./components/pages/auth/Forgot_Password/Forgot_Password")
 );
 
 const App = () => {
@@ -50,6 +53,11 @@ const App = () => {
       component: PatternMaster,
       isPrivateRoute: true,
     },
+    {
+      path: Routing.Forgot_Password,
+      component: Forgot_Password,
+      isPrivateRoute: false,
+    },
   ];
   return (
     <>
@@ -65,11 +73,11 @@ const App = () => {
                   element={
                     route.isPrivateRoute ? (
                       // <PrivateRoute>
-                        <MainLayout>
-                          <route.component />
-                        </MainLayout>
-                      // </PrivateRoute>
+                      <MainLayout>
+                        <route.component />
+                      </MainLayout>
                     ) : (
+                      // </PrivateRoute>
                       <route.component />
                     )
                   }
