@@ -98,7 +98,7 @@ const Header = ({ handleDrawerToggle }) => {
               sx={{
                 position: "absolute",
                 top: "100%",
-                left: "-20px",
+                left: "-130px",
                 width: "200px",
                 bgcolor: "#fff",
                 boxShadow:
@@ -110,6 +110,7 @@ const Header = ({ handleDrawerToggle }) => {
             >
               <List sx={{ padding: "0" }}>
                 <ListItem
+                  onClick={() => navigate(Routing.Account)}
                   sx={{
                     "&:hover": {
                       backgroundColor: "rgba(0, 0, 0, 5%)",
@@ -117,7 +118,6 @@ const Header = ({ handleDrawerToggle }) => {
                   }}
                 >
                   <ListItemIcon
-                    onClick={() => navigate(Routing.Account)}
                     sx={{ display: "flex", alignItems: "center", gap: "15px" }}
                   >
                     <Person2Outlined />

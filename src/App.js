@@ -20,6 +20,9 @@ const ItemMaster = lazy(() =>
 const Forgot_Password = lazy(() =>
   import("./components/pages/auth/Forgot_Password/Forgot_Password")
 );
+const ConfirmPassword = lazy(() =>
+  import("./components/pages/auth/Forgot_Password/ConfirmPassword")
+);
 
 const App = () => {
   const routes = [
@@ -36,6 +39,11 @@ const App = () => {
     {
       path: Routing.Signup,
       component: SignUp,
+      isPrivateRoute: false,
+    },
+    {
+      path: Routing.ConfirmPassword,
+      component: ConfirmPassword,
       isPrivateRoute: false,
     },
     {

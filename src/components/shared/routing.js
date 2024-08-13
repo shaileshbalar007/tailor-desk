@@ -4,6 +4,7 @@ export const Routing = {
   Signup: "/signup",
   Account: "/account",
   Forgot_Password: "/forgot_password",
+  ConfirmPassword: "/confirmpassword",
 
   // admin
   ItemMaster: "/master/item_Master",

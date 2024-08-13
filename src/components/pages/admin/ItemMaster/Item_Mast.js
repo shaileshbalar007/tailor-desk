@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import {
   Box,
   Button,
@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
   FormControl,
   Grid,
   IconButton,
@@ -22,15 +23,19 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AddIcon from "@mui/icons-material/Add";
+import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
 
 const Item_Mast = () => {
   const [open, setOpen] = React.useState(false);
+  const [dialogType, setDialogType] = React.useState(null);
   const [Top, setTop] = React.useState({
     Top: "",
     Bottom: "",
     MeasurementPrint: "",
     SpecialItem: "",
   });
+  const [selectedRow, setSelectedRow] = useState(null);
+  // eslint-disable-next-line
   const [rows, setRows] = useState([
     {
       id: 1,
@@ -158,15 +163,15 @@ const Item_Mast = () => {
       renderCell: (params) => (
         <Checkbox
           checked={params.row.top}
-          onChange={(event) => {
-            const updatedRows = rows.map((row) => {
-              if (row.id === params.row.id) {
-                return { ...row, top: event.target.checked };
-              }
-              return row;
-            });
-            setRows(updatedRows);
-          }}
+          // onChange={(event) => {
+          //   const updatedRows = rows.map((row) => {
+          //     if (row.id === params.row.id) {
+          //       return { ...row, top: event.target.checked };
+          //     }
+          //     return row;
+          //   });
+          //   setRows(updatedRows);
+          // }}
         />
       ),
     },
@@ -178,15 +183,15 @@ const Item_Mast = () => {
       renderCell: (params) => (
         <Checkbox
           checked={params.row.bottom}
-          onChange={(event) => {
-            const updatedRows = rows.map((row) => {
-              if (row.id === params.row.id) {
-                return { ...row, bottom: event.target.checked };
-              }
-              return row;
-            });
-            setRows(updatedRows);
-          }}
+          // onChange={(event) => {
+          //   const updatedRows = rows.map((row) => {
+          //     if (row.id === params.row.id) {
+          //       return { ...row, bottom: event.target.checked };
+          //     }
+          //     return row;
+          //   });
+          //   setRows(updatedRows);
+          // }}
         />
       ),
       with: "auto",
@@ -199,15 +204,15 @@ const Item_Mast = () => {
       renderCell: (params) => (
         <Checkbox
           checked={params.row.measurement_Print}
-          onChange={(event) => {
-            const updatedRows = rows.map((row) => {
-              if (row.id === params.row.id) {
-                return { ...row, measurement_Print: event.target.checked };
-              }
-              return row;
-            });
-            setRows(updatedRows);
-          }}
+          // onChange={(event) => {
+          //   const updatedRows = rows.map((row) => {
+          //     if (row.id === params.row.id) {
+          //       return { ...row, measurement_Print: event.target.checked };
+          //     }
+          //     return row;
+          //   });
+          //   setRows(updatedRows);
+          // }}
         />
       ),
     },
@@ -219,15 +224,15 @@ const Item_Mast = () => {
       renderCell: (params) => (
         <Checkbox
           checked={params.row.special_item}
-          onChange={(event) => {
-            const updatedRows = rows.map((row) => {
-              if (row.id === params.row.id) {
-                return { ...row, special_item: event.target.checked };
-              }
-              return row;
-            });
-            setRows(updatedRows);
-          }}
+          // onChange={(event) => {
+          //   const updatedRows = rows.map((row) => {
+          //     if (row.id === params.row.id) {
+          //       return { ...row, special_item: event.target.checked };
+          //     }
+          //     return row;
+          //   });
+          //   setRows(updatedRows);
+          // }}
         />
       ),
     },
@@ -237,10 +242,44 @@ const Item_Mast = () => {
       editable: true,
       flex: 1,
     },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: "Action",
+      headerAlign: "center",
+      flex: 1,
+      align: "center",
+      getActions: (params) => [
+        <GridActionsCellItem
+          label={"Edit"}
+          showInMenu
+          onClick={() => handleClickOpen("edit", params.row)}
+        />,
+        <GridActionsCellItem
+          label={"Delete"}
+          showInMenu
+          onClick={() => handleClickOpen("delete", params.row)}
+        />,
+      ],
+      // align: "center",.
+    },
   ];
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (type, row) => {
     setOpen(true);
+    setDialogType(type);
+    if (type === "edit") {
+      setSelectedRow(row);
+      setTop({
+        Top: row.top,
+        Bottom: row.bottom,
+        MeasurementPrint: row.measurement_Print,
+        SpecialItem: row.special_item,
+      });
+    }
+    if (type === "delete") {
+      setSelectedRow(row.id);
+    }
   };
 
   const handleClose = () => {
@@ -294,7 +333,7 @@ const Item_Mast = () => {
           </Box>
           <Box sx={{ display: "flex", gap: "10px" }}>
             <IconButton
-              onClick={handleClickOpen}
+              onClick={() => handleClickOpen("add")}
               aria-label="delete"
               size="medium"
               sx={{
@@ -368,114 +407,293 @@ const Item_Mast = () => {
           />
         </Box>
       </Box>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        sx={{ zIndex: "9999" }}
-      >
-        <DialogTitle id="alert-dialog-title">{"Item Master"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description" padding={5}>
-            <Grid container spacing={4}>
-              <Grid item md={6}>
-                <TextField
-                  label="Name"
-                  name="Name"
-                  placeHolder="Enter Name"
-                  sx={{ width: "100%" }}
-                />
+      {dialogType === "add" && (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          sx={{ zIndex: "9999" }}
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Add Item in Item Master"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description" padding={5}>
+              <Grid container spacing={4}>
+                <Grid item md={6}>
+                  <TextField
+                    label="Name"
+                    name="Name"
+                    placeHolder="Enter Name"
+                    sx={{ width: "100%" }}
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <TextField
+                    label="Rate"
+                    name="rate"
+                    placeHolder="Enter Rate"
+                    type="number"
+                    sx={{ width: "100%" }}
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Top</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={Top.Top}
+                      label="Top"
+                      name="Top"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Bottom
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={Top.Bottom}
+                      label="Bottom"
+                      name="Bottom"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Measurement Print
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={Top.MeasurementPrint}
+                      label="MeasurementPrint"
+                      name="MeasurementPrint"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      SpecialItem
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={Top.SpecialItem}
+                      label="SpecialItem"
+                      name="SpecialItem"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item md={6}>
-                <TextField
-                  label="Rate"
-                  name="rate"
-                  placeHolder="Enter Rate"
-                  type="number"
-                  sx={{ width: "100%" }}
-                />
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="inherit">
+              Cancle
+            </Button>
+            <Button onClick={handleClose} variant="contained" autoFocus>
+              Add Item
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
+      {dialogType === "edit" && (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          sx={{ zIndex: "9999" }}
+        >
+          <DialogTitle id="alert-dialog-title">{"Edit Item"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description" padding={5}>
+              <Grid container spacing={4}>
+                <Grid item md={6}>
+                  <TextField
+                    label="Name"
+                    name="Name"
+                    placeHolder="Enter Name"
+                    value={selectedRow.name}
+                    onChange={(event) => {
+                      setSelectedRow({
+                        ...selectedRow,
+                        name: event.target.value,
+                      });
+                    }}
+                    sx={{ width: "100%" }}
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <TextField
+                    label="Rate"
+                    name="rate"
+                    placeHolder="Enter Rate"
+                    type="number"
+                    value={selectedRow.rate}
+                    onChange={(event) => {
+                      setSelectedRow({
+                        ...selectedRow,
+                        rate: event.target.value,
+                      });
+                    }}
+                    sx={{ width: "100%" }}
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Top</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      label="Top"
+                      name="top"
+                      value={selectedRow.top ? 1 : 0}
+                      onChange={(event) => {
+                        setSelectedRow({
+                          ...selectedRow,
+                          top: event.target.value === 1,
+                        });
+                      }}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="bottom">Bottom</InputLabel>
+                    <Select
+                      labelId="bottom"
+                      id="bottom"
+                      label="Bottom"
+                      name="bottom"
+                      value={selectedRow.bottom ? 1 : 0}
+                      onChange={(event) => {
+                        setSelectedRow({
+                          ...selectedRow,
+                          bottom: event.target.value === 1,
+                        });
+                      }}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="measurement_Print">
+                      Measurement Print
+                    </InputLabel>
+                    <Select
+                      labelId="measurement_Print"
+                      id="measurement_Print"
+                      label="MeasurementPrint"
+                      name="measurement_Print"
+                      value={selectedRow.measurement_Print ? 1 : 0}
+                      onChange={(event) => {
+                        setSelectedRow({
+                          ...selectedRow,
+                          measurement_Print: event.target.value === 1,
+                        });
+                      }}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="special_item">SpecialItem</InputLabel>
+                    <Select
+                      labelId="special_item"
+                      id="special_item"
+                      label="SpecialItem"
+                      name="special_item"
+                      value={selectedRow.special_item ? 1 : 0}
+                      onChange={(event) => {
+                        setSelectedRow({
+                          ...selectedRow,
+                          special_item: event.target.value === 1,
+                        });
+                      }}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item md={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Top</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={Top.Top}
-                    label="Top"
-                    name="Top"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={0}>No</MenuItem>
-                    <MenuItem value={1}>Yes</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item md={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Bottom</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={Top.Bottom}
-                    label="Bottom"
-                    name="Bottom"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={0}>No</MenuItem>
-                    <MenuItem value={1}>Yes</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item md={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Measurement Print
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={Top.MeasurementPrint}
-                    label="MeasurementPrint"
-                    name="MeasurementPrint"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={0}>No</MenuItem>
-                    <MenuItem value={1}>Yes</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item md={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    SpecialItem
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={Top.SpecialItem}
-                    label="SpecialItem"
-                    name="SpecialItem"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={0}>No</MenuItem>
-                    <MenuItem value={1}>Yes</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} variant="contained" color="inherit">
-            Cancle
-          </Button>
-          <Button onClick={handleClose} variant="contained" autoFocus>
-            Add Item
-          </Button>
-        </DialogActions>
-      </Dialog>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="inherit">
+              Cancle
+            </Button>
+            <Button onClick={handleClose} variant="contained" autoFocus>
+              Add Item
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
+      {dialogType === "delete" && (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          sx={{ zIndex: "9999" }}
+        >
+          <DialogTitle
+            id="alert-dialog-title"
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <WarningRoundedIcon />
+            Confirmation
+          </DialogTitle>
+          <Divider />
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to discard all of your notes?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="inherit">
+              Cancle
+            </Button>
+            <Button color="error" onClick={handleClose} variant="contained">
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };

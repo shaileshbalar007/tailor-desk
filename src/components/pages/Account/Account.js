@@ -27,19 +27,7 @@ const Account = () => {
             <form>
               <Box>
                 <Grid container spacing={4} pb={3}>
-                  <Grid
-                    item
-                    md={12}
-                    xs={12}
-                    sx={{
-                      display: "grid",
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(8,1fr)",
-                        xs: "repeat(4,1fr)",
-                      },
-                    }}
-                  >
+                  <Grid item md={4} xs={12}>
                     <Typography
                       style={{
                         marginBottom: "11px",
@@ -50,19 +38,14 @@ const Account = () => {
                     >
                       Company Code : *
                     </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
+                    <TextField fullWidth />
                   </Grid>
                   <Grid
                     item
-                    md={6}
+                    md={4}
                     xs={12}
                     sx={{
-                      display: "grid",
                       alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
                     }}
                   >
                     <Typography
@@ -75,14 +58,13 @@ const Account = () => {
                     >
                       Company Name : *
                     </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
+                    <TextField fullWidth />
                   </Grid>
-                  <Grid
+                  {/* <Grid
                     item
-                    md={6}
+                    md={4}
                     xs={12}
                     sx={{
-                      display: "grid",
                       alignItems: "center",
                       gridTemplateColumns: {
                         xl: "repeat(4,1fr)",
@@ -100,19 +82,14 @@ const Account = () => {
                     >
                       Key Person : *
                     </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
-                  </Grid>
+                    <TextField fullWidth />
+                  </Grid> */}
                   <Grid
                     item
-                    md={6}
+                    md={4}
                     xs={12}
                     sx={{
-                      display: { xl: "grid", xs: "block", flexWrap: "wrap" },
                       alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
                     }}
                   >
                     <Typography
@@ -125,67 +102,33 @@ const Account = () => {
                     >
                       Contact Person : *
                     </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5", width: "100%" }} />
+                    <TextField fullWidth />
                   </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    sx={{
-                      display: { xl: "grid", xs: "flex", flexWrap: "wrap" },
-                      gap: "12px",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        gridColumn: "1/3",
-                        display: "grid",
-                        width: "100%",
-                        gridTemplateColumns: {
-                          xl: "repeat(2,1fr)",
-                          xs: "repeat(1,1fr)",
-                        },
+                  <Grid item md={6} xs={12} sx={{}}>
+                    <Typography
+                      style={{
+                        marginBottom: "11px",
+                        color: "#1E1E1E",
+                        fontSize: "16px",
+                        fontWeight: "500",
                       }}
                     >
-                      <Typography
-                        style={{
-                          marginBottom: "11px",
-                          color: "#1E1E1E",
-                          fontSize: "16px",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Mobile 1 :
-                      </Typography>
-                      <TextField sx={{ gridColumn: "1 / 5" }} />
-                    </Box>
-                    <Box
-                      sx={{
-                        gridColumn: "3/5",
-                        display: "grid",
-                        width: "100%",
-                        gridTemplateColumns: {
-                          xl: "repeat(3,1fr)",
-                          xs: "repeat(1,1fr)",
-                        },
+                      Mobile 1 :
+                    </Typography>
+                    <TextField fullWidth />
+                  </Grid>
+                  <Grid item md={6} xs={12} sx={{}}>
+                    <Typography
+                      style={{
+                        marginBottom: "11px",
+                        color: "#1E1E1E",
+                        fontSize: "16px",
+                        fontWeight: "500",
                       }}
                     >
-                      <Typography
-                        style={{
-                          marginBottom: "11px",
-                          color: "#1E1E1E",
-                          fontSize: "16px",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Mobile 2 :
-                      </Typography>
-                      <TextField sx={{ gridColumn: "1 / 5" }} />
-                    </Box>
+                      Mobile 2 :
+                    </Typography>
+                    <TextField fullWidth />
                   </Grid>
                 </Grid>
                 <Divider
@@ -208,19 +151,7 @@ const Account = () => {
                       Address
                     </Typography>
                   </Grid>
-                  <Grid
-                    item
-                    xl={6}
-                    xs={12}
-                    sx={{
-                      display: { xl: "grid", xs: "block", flexWrap: "wrap" },
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
+                  <Grid item xl={6} xs={12} sx={{}}>
                     <Typography
                       style={{
                         marginBottom: "11px",
@@ -233,10 +164,7 @@ const Account = () => {
                     </Typography>
                     <TextField sx={{ gridColumn: "1 / 5", width: "100%" }} />
                     <TextField
-                      sx={{ gridColumn: "1 / 5", width: "100%", mt: "15px" }}
-                    />
-                    <TextField
-                      sx={{ gridColumn: "1 / 5", width: "100%", mt: "15px" }}
+                      sx={{ gridColumn: "1 / 5", width: "100%", mt: "46px" }}
                     />
                   </Grid>
                   <Grid
@@ -246,10 +174,6 @@ const Account = () => {
                     sx={{
                       display: { xl: "grid", xs: "flex", flexWrap: "wrap" },
                       gap: "12px",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
                     }}
                   >
                     <Box
@@ -330,60 +254,8 @@ const Account = () => {
                       </Typography>
                       <TextField sx={{ gridColumn: "1 / 5" }} />
                     </Box>
-                    <Box
-                      sx={{
-                        gridColumn: "1/3",
-                        display: "grid",
-                        gridTemplateColumns: " repeat(2,1fr)",
-                        width: "100%",
-                      }}
-                    >
-                      <Typography
-                        style={{
-                          marginBottom: "11px",
-                          color: "#1E1E1E",
-                          fontSize: "16px",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Phone1 :
-                      </Typography>
-                      <TextField sx={{ gridColumn: "1 / 5" }} />
-                    </Box>
-                    <Box
-                      sx={{
-                        gridColumn: "3/5",
-                        display: "grid",
-                        gridTemplateColumns: " repeat(2,1fr)",
-                        width: "100%",
-                      }}
-                    >
-                      <Typography
-                        style={{
-                          marginBottom: "11px",
-                          color: "#1E1E1E",
-                          fontSize: "16px",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Phone2 :
-                      </Typography>
-                      <TextField sx={{ gridColumn: "1 / 5" }} />
-                    </Box>
                   </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    sx={{
-                      display: "grid",
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
+                  <Grid item xs={12}>
                     <Typography
                       style={{
                         marginBottom: "11px",
@@ -394,82 +266,7 @@ const Account = () => {
                     >
                       Email : *
                     </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
-                  </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    sx={{
-                      display: "grid",
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        marginBottom: "11px",
-                        color: "#1E1E1E",
-                        fontSize: "16px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Fax No : *
-                    </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
-                  </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    sx={{
-                      display: "grid",
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        marginBottom: "11px",
-                        color: "#1E1E1E",
-                        fontSize: "16px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Web : *
-                    </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
-                  </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    sx={{
-                      display: "grid",
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        marginBottom: "11px",
-                        color: "#1E1E1E",
-                        fontSize: "16px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Exp Officer : *
-                    </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
+                    <TextField fullWidth />
                   </Grid>
                 </Grid>
                 <Divider
@@ -563,11 +360,9 @@ const Account = () => {
                         fontWeight: "500",
                       }}
                     >
-                      Address :
+                      IFSC CODE
                     </Typography>
                     <TextField sx={{ gridColumn: "1 / 5" }} />
-                    <TextField sx={{ gridColumn: "1 / 5", mt: "15px" }} />
-                    <TextField sx={{ gridColumn: "1 / 5", mt: "15px" }} />
                   </Grid>
                   <Grid
                     item
@@ -592,6 +387,30 @@ const Account = () => {
                       Account No :*
                     </Typography>
                     <TextField sx={{ gridColumn: "1 / 5", width: "100%" }} />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      display: "grid",
+                      alignItems: "center",
+                      gridTemplateColumns: {
+                        xl: "repeat(4,1fr)",
+                        xs: "repeat(1,1fr)",
+                      },
+                    }}
+                  >
+                    <Typography
+                      style={{
+                        marginBottom: "11px",
+                        color: "#1E1E1E",
+                        fontSize: "16px",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Address :
+                    </Typography>
+                    <TextField sx={{ gridColumn: "1 / 5" }} />
                   </Grid>
                 </Grid>
                 <Divider
@@ -684,56 +503,6 @@ const Account = () => {
                     >
                       Local Invoice
                     </Typography>
-                  </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    sx={{
-                      display: "grid",
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        marginBottom: "11px",
-                        color: "#1E1E1E",
-                        fontSize: "16px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      VAT No : *
-                    </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
-                  </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                    sx={{
-                      display: "grid",
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        marginBottom: "11px",
-                        color: "#1E1E1E",
-                        fontSize: "16px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      TIN No :
-                    </Typography>
-                    <TextField sx={{ gridColumn: "1 / 5" }} />
                   </Grid>
                   <Grid
                     item

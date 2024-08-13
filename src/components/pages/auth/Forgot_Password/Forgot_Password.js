@@ -247,7 +247,7 @@ const Forgot_Password = () => {
                         background: "#3f51b5",
                         textTransform: "none",
                       }}
-                      onClick={() => Navigate(Routing.ItemMaster)}
+                      onClick={() => Navigate(Routing.ConfirmPassword)}
                     >
                       Verify OTP
                     </Button>

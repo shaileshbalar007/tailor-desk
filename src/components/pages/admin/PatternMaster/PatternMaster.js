@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import {
   Box,
   Button,
@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
   FormControl,
   Grid,
   IconButton,
@@ -19,7 +20,10 @@ import {
 } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AddIcon from "@mui/icons-material/Add";
+import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
+
 const PatternMaster = () => {
+  // eslint-disable-next-line
   const [rows, setRows] = useState([
     {
       id: 1,
@@ -129,6 +133,8 @@ const PatternMaster = () => {
   ]);
   const [open, setOpen] = React.useState(false);
   const [filter, setfilter] = React.useState("");
+  const [dialogType, setDialogType] = React.useState(null);
+  const [selectedRow, setSelectedRow] = useState(null);
   const handleChange = (event) => {
     setfilter(event.target.value);
   };
@@ -155,22 +161,50 @@ const PatternMaster = () => {
       renderCell: (params) => (
         <Checkbox
           checked={params.row.active}
-          onChange={(event) => {
-            const updatedRows = rows.map((row) => {
-              if (row.id === params.row.id) {
-                return { ...row, active: event.target.checked };
-              }
-              return row;
-            });
-            setRows(updatedRows);
-          }}
+          // onChange={(event) => {
+          //   const updatedRows = rows.map((row) => {
+          //     if (row.id === params.row.id) {
+          //       return { ...row, active: event.target.checked };
+          //     }
+          //     return row;
+          //   });
+          //   setRows(updatedRows);
+          // }}
         />
       ),
     },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: "Action",
+      headerAlign: "center",
+      flex: 1,
+      align: "center",
+      getActions: (params) => [
+        <GridActionsCellItem
+          label={"Edit"}
+          showInMenu
+          onClick={() => handleClickOpen("edit", params.row)}
+        />,
+        <GridActionsCellItem
+          label={"Delete"}
+          showInMenu
+          onClick={() => handleClickOpen("delete", params.row)}
+        />,
+      ],
+      // align: "center",.
+    },
   ];
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (type, row) => {
     setOpen(true);
+    setDialogType(type);
+    if (type === "edit") {
+      setSelectedRow(row);
+    }
+    if (type === "delete") {
+      setSelectedRow(row.id);
+    }
   };
 
   const handleClose = () => {
@@ -203,13 +237,14 @@ const PatternMaster = () => {
               name="Item"
               onChange={handleChange}
             >
-              <MenuItem value={"Shirt"}>Shirt</MenuItem>
-              <MenuItem value={"કટ વાળો"}>કટ વાળો</MenuItem>
+              {rows.map((item) => (
+                <MenuItem value={item.name}>{item.name}</MenuItem>
+              ))}
             </Select>
           </FormControl>
           <Box sx={{ display: "flex", gap: "10px" }}>
             <IconButton
-              onClick={handleClickOpen}
+              onClick={() => handleClickOpen("add")}
               aria-label="delete"
               size="medium"
               sx={{
@@ -281,54 +316,161 @@ const PatternMaster = () => {
           />
         </Box>
       </Box>
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        sx={{ zIndex: "9999" }}
-      >
-        <DialogTitle id="alert-dialog-title">{"Pattern Master"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description" padding={{ sm: 5 }}>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <TextField
-                  label="Name"
-                  name="Name"
-                  placeHolder="Enter Name"
-                  sx={{ width: "100%" }}
-                />
+      {dialogType === "add" && (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          sx={{ zIndex: "9999" }}
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Add your Pattern"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText
+              id="alert-dialog-description"
+              padding={{ sm: 5 }}
+            >
+              <Grid container spacing={4}>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Name"
+                    name="Name"
+                    placeHolder="Enter Name"
+                    sx={{ width: "100%" }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      ACTIVE
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      // value={Top.Top}
+                      label="ACTIVE"
+                      name="ACTIVE"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">ACTIVE</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    // value={Top.Top}
-                    label="ACTIVE"
-                    name="ACTIVE"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={0}>No</MenuItem>
-                    <MenuItem value={1}>Yes</MenuItem>
-                  </Select>
-                </FormControl>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="inherit">
+              Disagree
+            </Button>
+            <Button onClick={handleClose} variant="contained" autoFocus>
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
+      {dialogType === "edit" && (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          sx={{ zIndex: "9999" }}
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Edit your Pattern"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText
+              id="alert-dialog-description"
+              padding={{ sm: 5 }}
+            >
+              <Grid container spacing={4}>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Name"
+                    name="name"
+                    placeHolder="Enter Name"
+                    sx={{ width: "100%" }}
+                    value={selectedRow.name}
+                    onChange={(event) => {
+                      setSelectedRow({
+                        ...selectedRow,
+                        name: event.target.value,
+                      });
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      ACTIVE
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      label="ACTIVE"
+                      name="active"
+                      value={selectedRow.active ? 1 : 0}
+                      onChange={(event) => {
+                        setSelectedRow({
+                          ...selectedRow,
+                          active: event.target.value === 1,
+                        });
+                      }}
+                    >
+                      <MenuItem value={0}>No</MenuItem>
+                      <MenuItem value={1}>Yes</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-            </Grid>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} variant="contained" color="inherit">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} variant="contained" autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="inherit">
+              Disagree
+            </Button>
+            <Button onClick={handleClose} variant="contained" autoFocus>
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
+      {dialogType === "delete" && (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          sx={{ zIndex: "9999" }}
+        >
+          <DialogTitle
+            id="alert-dialog-title"
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <WarningRoundedIcon />
+            Confirmation
+          </DialogTitle>
+          <Divider />
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to discard all of your notes?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="inherit">
+              Cancle
+            </Button>
+            <Button color="error" onClick={handleClose} variant="contained">
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };
