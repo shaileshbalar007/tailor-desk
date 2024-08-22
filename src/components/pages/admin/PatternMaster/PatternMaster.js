@@ -133,10 +133,14 @@ const PatternMaster = () => {
   ]);
   const [open, setOpen] = React.useState(false);
   const [filter, setfilter] = React.useState("");
+  const [addpattern, setaddpattern] = React.useState("");
   const [dialogType, setDialogType] = React.useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
   const handleChange = (event) => {
     setfilter(event.target.value);
+  };
+  const handleAddPatternChange = (event) => {
+    setaddpattern(event.target.value);
   };
 
   const columns = [
@@ -334,6 +338,23 @@ const PatternMaster = () => {
             >
               <Grid container spacing={4}>
                 <Grid item xs={12}>
+                  <FormControl sx={{ backgroundColor: "#fff" }} fullWidth>
+                    <InputLabel id="demo-simple-select-label">Item</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={addpattern}
+                      label="Item"
+                      name="Item"
+                      onChange={handleAddPatternChange}
+                    >
+                      {rows.map((item) => (
+                        <MenuItem value={item.name}>{item.name}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
                   <TextField
                     label="Name"
                     name="Name"
@@ -341,33 +362,33 @@ const PatternMaster = () => {
                     sx={{ width: "100%" }}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      ACTIVE
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      // value={Top.Top}
-                      label="ACTIVE"
-                      name="ACTIVE"
-                      onChange={handleChange}
-                    >
-                      <MenuItem value={0}>No</MenuItem>
-                      <MenuItem value={1}>Yes</MenuItem>
-                    </Select>
-                  </FormControl>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Checkbox
+                    id="ACTIVE"
+                    name="ACTIVE"
+                    label="ACTIVE"
+                    onChange={handleChange}
+                  />
+                  <InputLabel id="ACTIVE" sx={{ color: "#000" }}>
+                    ACTIVE
+                  </InputLabel>
                 </Grid>
               </Grid>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} variant="contained" color="inherit">
-              Disagree
+              Cancle
             </Button>
             <Button onClick={handleClose} variant="contained" autoFocus>
-              Agree
+              Save
             </Button>
           </DialogActions>
         </Dialog>
@@ -404,38 +425,39 @@ const PatternMaster = () => {
                     }}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      ACTIVE
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      label="ACTIVE"
-                      name="active"
-                      value={selectedRow.active ? 1 : 0}
-                      onChange={(event) => {
-                        setSelectedRow({
-                          ...selectedRow,
-                          active: event.target.value === 1,
-                        });
-                      }}
-                    >
-                      <MenuItem value={0}>No</MenuItem>
-                      <MenuItem value={1}>Yes</MenuItem>
-                    </Select>
-                  </FormControl>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Checkbox
+                    id="ACTIVE"
+                    name="ACTIVE"
+                    label="ACTIVE"
+                    checked={selectedRow.active ? 1 : 0}
+                    onChange={(event) => {
+                      setSelectedRow({
+                        ...selectedRow,
+                        active: event.target.value === 1,
+                      });
+                    }}
+                  />
+                  <InputLabel id="ACTIVE" sx={{ color: "#000" }}>
+                    ACTIVE
+                  </InputLabel>
                 </Grid>
               </Grid>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} variant="contained" color="inherit">
-              Disagree
+              Cancle
             </Button>
             <Button onClick={handleClose} variant="contained" autoFocus>
-              Agree
+              Save
             </Button>
           </DialogActions>
         </Dialog>

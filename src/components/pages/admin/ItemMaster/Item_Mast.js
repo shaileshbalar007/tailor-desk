@@ -10,13 +10,10 @@ import {
   DialogContentText,
   DialogTitle,
   Divider,
-  FormControl,
   Grid,
   IconButton,
   InputAdornment,
   InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -32,9 +29,9 @@ const Item_Mast = () => {
     Top: "",
     Bottom: "",
     MeasurementPrint: "",
-    SpecialItem: "",
   });
   const [selectedRow, setSelectedRow] = useState(null);
+  console.log("🚀 ~ selectedRow:", selectedRow);
   // eslint-disable-next-line
   const [rows, setRows] = useState([
     {
@@ -217,26 +214,6 @@ const Item_Mast = () => {
       ),
     },
     {
-      field: "special_item",
-      headerName: "SpecialItem",
-      type: "boolean",
-      flex: 1,
-      renderCell: (params) => (
-        <Checkbox
-          checked={params.row.special_item}
-          // onChange={(event) => {
-          //   const updatedRows = rows.map((row) => {
-          //     if (row.id === params.row.id) {
-          //       return { ...row, special_item: event.target.checked };
-          //     }
-          //     return row;
-          //   });
-          //   setRows(updatedRows);
-          // }}
-        />
-      ),
-    },
-    {
       field: "sketch_image",
       headerName: "SketchImage",
       editable: true,
@@ -274,7 +251,6 @@ const Item_Mast = () => {
         Top: row.top,
         Bottom: row.bottom,
         MeasurementPrint: row.measurement_Print,
-        SpecialItem: row.special_item,
       });
     }
     if (type === "delete") {
@@ -438,7 +414,7 @@ const Item_Mast = () => {
                     sx={{ width: "100%" }}
                   />
                 </Grid>
-                <Grid item md={6}>
+                {/* <Grid item md={6}>
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Top</InputLabel>
                     <Select
@@ -489,24 +465,59 @@ const Item_Mast = () => {
                       <MenuItem value={1}>Yes</MenuItem>
                     </Select>
                   </FormControl>
-                </Grid>
-                <Grid item md={6}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      SpecialItem
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={Top.SpecialItem}
-                      label="SpecialItem"
-                      name="SpecialItem"
+                </Grid> */}
+                <Grid
+                  item
+                  md={12}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    pt: "20px",
+                  }}
+                >
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", gap: "4px" }}
+                  >
+                    <Checkbox
+                      sx={{ padding: "0" }}
+                      id="top"
+                      name="top"
+                      label="top"
                       onChange={handleChange}
-                    >
-                      <MenuItem value={0}>No</MenuItem>
-                      <MenuItem value={1}>Yes</MenuItem>
-                    </Select>
-                  </FormControl>
+                    />
+                    <InputLabel id="top" sx={{ color: "#000" }}>
+                      Top
+                    </InputLabel>
+                  </Box>
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", gap: "4px" }}
+                  >
+                    <Checkbox
+                      sx={{ padding: "0" }}
+                      id="bottom"
+                      name="bottom"
+                      label="bottom"
+                      onChange={handleChange}
+                    />
+                    <InputLabel id="bottom" sx={{ color: "#000" }}>
+                      Bottom
+                    </InputLabel>
+                  </Box>
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", gap: "4px" }}
+                  >
+                    <Checkbox
+                      sx={{ padding: "0" }}
+                      id="measurement_Print"
+                      name="measurement_Print"
+                      label="measurement_Print"
+                      onChange={handleChange}
+                    />
+                    <InputLabel id="measurement_Print" sx={{ color: "#000" }}>
+                      Measurement Print
+                    </InputLabel>
+                  </Box>
                 </Grid>
               </Grid>
             </DialogContentText>
@@ -564,91 +575,75 @@ const Item_Mast = () => {
                     sx={{ width: "100%" }}
                   />
                 </Grid>
-                <Grid item md={6}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Top</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      label="Top"
+                <Grid
+                  item
+                  md={12}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", gap: "4px" }}
+                  >
+                    <Checkbox
+                      id="top"
                       name="top"
-                      value={selectedRow.top ? 1 : 0}
+                      label="top"
+                      sx={{ padding: "0" }}
+                      checked={selectedRow.top ? 1 : 0}
                       onChange={(event) => {
                         setSelectedRow({
                           ...selectedRow,
                           top: event.target.value === 1,
                         });
                       }}
-                    >
-                      <MenuItem value={0}>No</MenuItem>
-                      <MenuItem value={1}>Yes</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item md={6}>
-                  <FormControl fullWidth>
-                    <InputLabel id="bottom">Bottom</InputLabel>
-                    <Select
-                      labelId="bottom"
+                    />
+                    <InputLabel id="top" sx={{ color: "#000" }}>
+                      Top
+                    </InputLabel>
+                  </Box>
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", gap: "4px" }}
+                  >
+                    <Checkbox
+                      sx={{ padding: "0" }}
                       id="bottom"
-                      label="Bottom"
                       name="bottom"
-                      value={selectedRow.bottom ? 1 : 0}
+                      label="bottom"
+                      checked={selectedRow.bottom ? 1 : 0}
                       onChange={(event) => {
                         setSelectedRow({
                           ...selectedRow,
                           bottom: event.target.value === 1,
                         });
                       }}
-                    >
-                      <MenuItem value={0}>No</MenuItem>
-                      <MenuItem value={1}>Yes</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item md={6}>
-                  <FormControl fullWidth>
-                    <InputLabel id="measurement_Print">
+                    />
+                    <InputLabel id="bottom" sx={{ color: "#000" }}>
+                      Bottom
+                    </InputLabel>
+                  </Box>
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", gap: "4px" }}
+                  >
+                    <Checkbox
+                      sx={{ padding: "0" }}
+                      id="measurement_Print"
+                      name="measurement_Print"
+                      label="measurement_Print"
+                      checked={selectedRow.measurement_Print ? 1 : 0}
+                      onChange={(event) => {
+                        setSelectedRow({
+                          ...selectedRow,
+                          measurement_Print: event.target.value === 0,
+                        });
+                      }}
+                    />
+                    <InputLabel id="measurement_Print" sx={{ color: "#000" }}>
                       Measurement Print
                     </InputLabel>
-                    <Select
-                      labelId="measurement_Print"
-                      id="measurement_Print"
-                      label="MeasurementPrint"
-                      name="measurement_Print"
-                      value={selectedRow.measurement_Print ? 1 : 0}
-                      onChange={(event) => {
-                        setSelectedRow({
-                          ...selectedRow,
-                          measurement_Print: event.target.value === 1,
-                        });
-                      }}
-                    >
-                      <MenuItem value={0}>No</MenuItem>
-                      <MenuItem value={1}>Yes</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item md={6}>
-                  <FormControl fullWidth>
-                    <InputLabel id="special_item">SpecialItem</InputLabel>
-                    <Select
-                      labelId="special_item"
-                      id="special_item"
-                      label="SpecialItem"
-                      name="special_item"
-                      value={selectedRow.special_item ? 1 : 0}
-                      onChange={(event) => {
-                        setSelectedRow({
-                          ...selectedRow,
-                          special_item: event.target.value === 1,
-                        });
-                      }}
-                    >
-                      <MenuItem value={0}>No</MenuItem>
-                      <MenuItem value={1}>Yes</MenuItem>
-                    </Select>
-                  </FormControl>
+                  </Box>
                 </Grid>
               </Grid>
             </DialogContentText>
@@ -658,7 +653,7 @@ const Item_Mast = () => {
               Cancle
             </Button>
             <Button onClick={handleClose} variant="contained" autoFocus>
-              Add Item
+              Save Item
             </Button>
           </DialogActions>
         </Dialog>

@@ -44,7 +44,7 @@ const SidbarNavigation = [
 const Sidebar = ({ isClosing }) => {
   const location = window.location.pathname;
 
-  const [expandedItem, setExpandedItem] = useState(0);
+  const [expandedItem, setExpandedItem] = useState();
 
   const navigate = useNavigate();
 
