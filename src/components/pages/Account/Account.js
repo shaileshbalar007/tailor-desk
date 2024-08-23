@@ -11,8 +11,6 @@ import {
 } from "@mui/material";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Padding } from "@mui/icons-material";
-// ../../assets/logo/codelinelogo.jfif
 
 const Account = () => {
   return (
