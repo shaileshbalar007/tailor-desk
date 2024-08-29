@@ -2,17 +2,12 @@ import {
   Box,
   Button,
   Divider,
-  FormControl,
-  FormLabel,
   Grid,
-  TextareaAutosize,
   TextField,
   Typography,
 } from "@mui/material";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Padding } from "@mui/icons-material";
-// ../../assets/logo/codelinelogo.jfif
 
 const Account = () => {
   return (
@@ -23,12 +18,7 @@ const Account = () => {
         height={"calc(100vh - 70px)"}
         overflow={{ xl: "hidden", xs: "auto" }}
       >
-        <Grid
-          item
-          md={4}
-          xs={12}
-          // sx={{ height: "calc(100vh - 10px)", overflow: "auto" }}
-        >
+        <Grid item lg={4} xs={12}>
           <Box
             sx={{
               backgroundColor: "#fff",
@@ -86,66 +76,91 @@ const Account = () => {
                   </Typography>
                 </Box>
               </Box>
-              <FormControl fullWidth>
-                <FormLabel sx={{ color: "#000", fontSize: "15px" }}>
-                  Bio
-                </FormLabel>
-                <TextareaAutosize
-                  id="my-profile_bio"
-                  style={{ padding: "12px 6px", borderRadius: "8px" }}
-                  placeholder="Placeholder"
-                  value={
-                    "On the other hand, we denounce with righteous indignation"
-                  }
-                  minRows={8}
-                  fullWidth
-                />
-              </FormControl>
-              <Box sx={{ mt: 4 }}>
-                <Typography
-                  style={{
-                    marginBottom: "11px",
-                    color: "#1E1E1E",
-                    fontSize: "16px",
-                    fontWeight: "500",
+              <Grid container spacing={4}>
+                <Grid item xs={12}>
+                  <Typography
+                    style={{
+                      marginBottom: "11px",
+                      color: "#1E1E1E",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Company Code : *
+                  </Typography>
+                  <TextField fullWidth />
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    alignItems: "center",
                   }}
                 >
-                  Email-Address
-                </Typography>
-                <TextField type="email" fullWidth />
-              </Box>
-              <Box sx={{ mt: 4 }}>
-                <Typography
-                  style={{
-                    marginBottom: "11px",
-                    color: "#1E1E1E",
-                    fontSize: "16px",
-                    fontWeight: "500",
+                  <Typography
+                    style={{
+                      marginBottom: "11px",
+                      color: "#1E1E1E",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Company Name : *
+                  </Typography>
+                  <TextField fullWidth />
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    alignItems: "center",
                   }}
                 >
-                  Password
-                </Typography>
-                <TextField type="password" fullWidth />
-              </Box>
-              <Box sx={{ mt: 4 }}>
-                <Typography
-                  style={{
-                    marginBottom: "11px",
-                    color: "#1E1E1E",
-                    fontSize: "16px",
-                    fontWeight: "500",
-                  }}
-                >
-                  Website
-                </Typography>
-                <TextField type="text" fullWidth />
-              </Box>
+                  <Typography
+                    style={{
+                      marginBottom: "11px",
+                      color: "#1E1E1E",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Contact Person : *
+                  </Typography>
+                  <TextField fullWidth />
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography
+                    style={{
+                      marginBottom: "11px",
+                      color: "#1E1E1E",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Mobile 1 :
+                  </Typography>
+                  <TextField fullWidth />
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography
+                    style={{
+                      marginBottom: "11px",
+                      color: "#1E1E1E",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Mobile 2 :
+                  </Typography>
+                  <TextField fullWidth />
+                </Grid>
+              </Grid>
             </Box>
           </Box>
         </Grid>
         <Grid
           item
-          md={8}
+          lg={8}
           xs={12}
           sx={{
             height: { md: "100vh", xs: "100%" },
@@ -175,121 +190,6 @@ const Account = () => {
               >
                 <form>
                   <Box>
-                    <Grid container spacing={4} pb={3}>
-                      <Grid item md={4} xs={12}>
-                        <Typography
-                          style={{
-                            marginBottom: "11px",
-                            color: "#1E1E1E",
-                            fontSize: "16px",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Company Code : *
-                        </Typography>
-                        <TextField fullWidth />
-                      </Grid>
-                      <Grid
-                        item
-                        md={4}
-                        xs={12}
-                        sx={{
-                          alignItems: "center",
-                        }}
-                      >
-                        <Typography
-                          style={{
-                            marginBottom: "11px",
-                            color: "#1E1E1E",
-                            fontSize: "16px",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Company Name : *
-                        </Typography>
-                        <TextField fullWidth />
-                      </Grid>
-                      {/* <Grid
-                    item
-                    md={4}
-                    xs={12}
-                    sx={{
-                      alignItems: "center",
-                      gridTemplateColumns: {
-                        xl: "repeat(4,1fr)",
-                        xs: "repeat(1,1fr)",
-                      },
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        marginBottom: "11px",
-                        color: "#1E1E1E",
-                        fontSize: "16px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Key Person : *
-                    </Typography>
-                    <TextField fullWidth />
-                  </Grid> */}
-                      <Grid
-                        item
-                        md={4}
-                        xs={12}
-                        sx={{
-                          alignItems: "center",
-                        }}
-                      >
-                        <Typography
-                          style={{
-                            marginBottom: "11px",
-                            color: "#1E1E1E",
-                            fontSize: "16px",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Contact Person : *
-                        </Typography>
-                        <TextField fullWidth />
-                      </Grid>
-                      <Grid item md={6} xs={12} sx={{}}>
-                        <Typography
-                          style={{
-                            marginBottom: "11px",
-                            color: "#1E1E1E",
-                            fontSize: "16px",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Mobile 1 :
-                        </Typography>
-                        <TextField fullWidth />
-                      </Grid>
-                      <Grid item md={6} xs={12} sx={{}}>
-                        <Typography
-                          style={{
-                            marginBottom: "11px",
-                            color: "#1E1E1E",
-                            fontSize: "16px",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Mobile 2 :
-                        </Typography>
-                        <TextField fullWidth />
-                      </Grid>
-                    </Grid>
-                    <Divider
-                      orientation="vertical"
-                      variant="middle"
-                      flexItem
-                      sx={{
-                        color: "aqua",
-                        backgroundColor: "gray",
-                        height: "2px",
-                      }}
-                    />
                     <Grid container spacing={4} py={3}>
                       <Grid item md={12}>
                         <Typography
@@ -322,7 +222,7 @@ const Account = () => {
                           sx={{
                             gridColumn: "1 / 5",
                             width: "100%",
-                            mt: "46px",
+                            mt: { xl: "70px", xs: "30px" },
                           }}
                         />
                       </Grid>
@@ -332,7 +232,8 @@ const Account = () => {
                         xs={12}
                         sx={{
                           display: { xl: "grid", xs: "flex", flexWrap: "wrap" },
-                          gap: "12px",
+                          rowGap: "32px",
+                          columnGap: "20px",
                         }}
                       >
                         <Box
@@ -381,8 +282,6 @@ const Account = () => {
                           sx={{
                             width: "100%",
                             gridColumn: "1/3",
-                            display: "grid",
-                            gridTemplateColumns: " repeat(2,1fr)",
                           }}
                         >
                           <Typography
@@ -395,13 +294,11 @@ const Account = () => {
                           >
                             Country :
                           </Typography>
-                          <TextField sx={{ gridColumn: "1 / 5" }} />
+                          <TextField fullWidth />
                         </Box>
                         <Box
                           sx={{
                             width: "100%",
-                            gridColumn: "3/5",
-                            display: "grid",
                             gridTemplateColumns: " repeat(3,1fr)",
                           }}
                         >
@@ -415,7 +312,7 @@ const Account = () => {
                           >
                             Pincode :
                           </Typography>
-                          <TextField sx={{ gridColumn: "1 / 5" }} />
+                          <TextField fullWidth />
                         </Box>
                       </Grid>
                       <Grid item xs={12}>
@@ -456,19 +353,7 @@ const Account = () => {
                           Bank Details
                         </Typography>
                       </Grid>
-                      <Grid
-                        item
-                        md={6}
-                        xs={12}
-                        sx={{
-                          display: "grid",
-                          alignItems: "center",
-                          gridTemplateColumns: {
-                            xl: "repeat(4,1fr)",
-                            xs: "repeat(1,1fr)",
-                          },
-                        }}
-                      >
+                      <Grid item md={6} xs={12}>
                         <Typography
                           style={{
                             marginBottom: "11px",
@@ -479,21 +364,9 @@ const Account = () => {
                         >
                           Bank Name : *
                         </Typography>
-                        <TextField sx={{ gridColumn: "1 / 5" }} />
+                        <TextField fullWidth />
                       </Grid>
-                      <Grid
-                        item
-                        md={6}
-                        xs={12}
-                        sx={{
-                          display: "grid",
-                          alignItems: "center",
-                          gridTemplateColumns: {
-                            xl: "repeat(4,1fr)",
-                            xs: "repeat(1,1fr)",
-                          },
-                        }}
-                      >
+                      <Grid item md={6} xs={12}>
                         <Typography
                           style={{
                             marginBottom: "11px",
@@ -504,7 +377,7 @@ const Account = () => {
                         >
                           Branch Name :
                         </Typography>
-                        <TextField sx={{ gridColumn: "1 / 5" }} />
+                        <TextField fullWidth />
                       </Grid>
                       <Grid
                         item
@@ -606,19 +479,7 @@ const Account = () => {
                           Foreign Bank
                         </Typography>
                       </Grid>
-                      <Grid
-                        item
-                        md={6}
-                        xs={12}
-                        sx={{
-                          display: "grid",
-                          alignItems: "center",
-                          gridTemplateColumns: {
-                            xl: "repeat(4,1fr)",
-                            xs: "repeat(1,1fr)",
-                          },
-                        }}
-                      >
+                      <Grid item md={6} xs={12}>
                         <Typography
                           style={{
                             marginBottom: "11px",
@@ -629,7 +490,7 @@ const Account = () => {
                         >
                           Bank Name : *
                         </Typography>
-                        <TextField sx={{ gridColumn: "1 / 5" }} />
+                        <TextField fullWidth />
                       </Grid>
                       <Grid
                         item
@@ -743,7 +604,7 @@ const Account = () => {
                       }}
                     />
                     <Grid container spacing={4} py={3}>
-                      <Grid item md={12}>
+                      <Grid item xs={12}>
                         <Box
                           fullWidth
                           sx={{
@@ -757,8 +618,10 @@ const Account = () => {
                             sx={{
                               display: "flex",
                               alignItems: "center",
+                              flexWrap: "wrap",
                               justifyContent: "center",
                               cursor: "pointer",
+                              rowGap: "10px",
                             }}
                           >
                             <Button

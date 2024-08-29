@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
+@font-face {
+  font-family: 'Verdana';
+  src: url('./fonts/Verdana-Bold.woff') format('woff2'),
+    url('./fonts/Verdana-Bold.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Verdana';
+  src: url('./fonts/Verdana.woff2') format('woff2'),
+    url('./fonts/Verdana.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 .lds-ring {
   display: inline-block;
@@ -81,6 +99,10 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 8.5px 7px !important;
 }
 
 @media (max-width:899px) {

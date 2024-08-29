@@ -100,7 +100,7 @@ const App = () => {
 };
 const THEME = createTheme({
   typography: {
-    fontFamily: `'Roboto', sans- serif`,
+    fontFamily: `'Verdana', sans- serif`,
   },
 });
 
