@@ -15,6 +15,7 @@ const Account = () => {
       <Grid
         container
         spacing={4}
+        id="Account"
         height={"calc(100vh - 70px)"}
         overflow={{ xl: "hidden", xs: "auto" }}
       >
